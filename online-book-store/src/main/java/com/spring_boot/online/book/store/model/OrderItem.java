@@ -24,7 +24,6 @@ public class OrderItem {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-
     // many items can be linked to one book
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)

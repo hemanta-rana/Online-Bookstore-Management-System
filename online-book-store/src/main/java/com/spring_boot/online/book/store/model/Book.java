@@ -34,9 +34,4 @@ public class Book {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-//    //relation with orderitem
-//    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL)
-//    private List<OrderItem> orderItems;
-
-
 }
