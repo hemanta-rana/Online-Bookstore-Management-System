@@ -47,5 +47,30 @@ public class GlobalExceptionHandler {
 
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionResponse> illegealArgumentExceptionHandler (IllegalArgumentException exception, WebRequest webRequest){
+        ExceptionResponse exceptionResponse =  new ExceptionResponse(
+                webRequest.getDescription(false),
+                HttpStatus.CONFLICT,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionResponse);
+
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ExceptionResponse> ExceptionHandler (Exception exception, WebRequest webRequest){
+        ExceptionResponse exceptionResponse =  new ExceptionResponse(
+                webRequest.getDescription(false),
+                HttpStatus.CONFLICT,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionResponse);
+
+    }
+
+
 
 }
