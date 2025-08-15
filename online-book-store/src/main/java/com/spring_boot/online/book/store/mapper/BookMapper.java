@@ -38,7 +38,7 @@ public class BookMapper {
         bookDTO.setAuthor(book.getAuthor());
         bookDTO.setPrice(book.getPrice());
         bookDTO.setStock(book.getStock());
-        bookDTO.setCategoryId(book.getCategory().getId() != null? bookDTO.getCategoryId() : null);
+        bookDTO.setCategoryId(book.getCategory().getId());
 
         return bookDTO;
     }

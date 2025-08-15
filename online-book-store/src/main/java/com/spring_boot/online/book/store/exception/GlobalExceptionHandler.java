@@ -23,4 +23,29 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionResponse);
 
     }
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> bookNotFoundExceptionHandler (BookNotFoundException exception, WebRequest webRequest){
+        ExceptionResponse exceptionResponse =  new ExceptionResponse(
+                webRequest.getDescription(false),
+                HttpStatus.CONFLICT,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionResponse);
+
+    }
+
+    @ExceptionHandler(CategoryAlreadyExistException.class)
+    public ResponseEntity<ExceptionResponse> categoryAlreadyExistExceptionHandler (CategoryAlreadyExistException exception, WebRequest webRequest){
+        ExceptionResponse exceptionResponse =  new ExceptionResponse(
+                webRequest.getDescription(false),
+                HttpStatus.CONFLICT,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionResponse);
+
+    }
+
+
 }
