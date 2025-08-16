@@ -1,7 +1,9 @@
 package com.spring_boot.online.book.store.controller;
 
+import com.spring_boot.online.book.store.config.AuthService;
 import com.spring_boot.online.book.store.dto.UserDTO;
 import com.spring_boot.online.book.store.service.impl.MyUserDetailsService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/users")
 @RequiredArgsConstructor
 public class UserController {
-
+    private final AuthService authService;
     private  final MyUserDetailsService userService;
 
 
     @PostMapping("/register")
     public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(userDTO));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ResponseLoginDTO> loginUser(@RequestBody @Valid RequestLoginDTO requestLoginDTO){
+       return ResponseEntity.ok(authService.login(requestLoginDTO));
     }
 
 }
